@@ -1,0 +1,9 @@
+node_modules/
+.kaiho/
+*.log
+coverage/
+dist/
+build/
+.gradle/
+android/local.properties
+

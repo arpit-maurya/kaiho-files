@@ -1,0 +1,27 @@
+{
+  "name": "kaiho-files",
+  "version": "0.1.0",
+  "description": "Offline LAN-based remote file browsing, preview, and transfer for Windows and Android.",
+  "type": "commonjs",
+  "private": false,
+  "license": "MIT",
+  "main": "windows/server.js",
+  "scripts": {
+    "start": "node windows/server.js",
+    "test": "node --test tests/*.test.js",
+    "verify": "node --test tests/*.test.js"
+  },
+  "keywords": [
+    "lan",
+    "files",
+    "offline",
+    "windows",
+    "android",
+    "file-transfer"
+  ],
+  "dependencies": {
+    "qrcode": "^1.5.4"
+  },
+  "devDependencies": {}
+}
+
