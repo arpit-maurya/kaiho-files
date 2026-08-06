@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Kaiho Files</title>
+    <link rel="stylesheet" href="/styles.css">
+  </head>
+  <body>
+    <main class="app-shell">
+      <aside class="sidebar">
+        <div class="brand">
+          <div class="brand-mark">K</div>
+          <div>
+            <strong>Kaiho Files</strong>
+            <span>LAN file browser</span>
+          </div>
+        </div>
+        <nav class="nav">
+          <button class="nav-item active" data-view="home">Home</button>
+          <button class="nav-item" data-view="this-device">This Device</button>
+          <button class="nav-item" data-view="transfers">Transfers</button>
+          <button class="nav-item" data-view="settings">Settings</button>
+        </nav>
+        <div class="sidebar-foot">
+          <span id="deviceName">Starting...</span>
+          <small id="deviceStatus">Discoverable on LAN</small>
+        </div>
+      </aside>
+
+      <section class="workspace">
+        <header class="topbar">
+          <div>
+            <h1 id="viewTitle">Nearby Devices</h1>
+            <p id="viewSubtitle">Browse and transfer files over your local network.</p>
+          </div>
+          <div class="top-actions">
+            <button id="refreshBtn" class="icon-button" title="Refresh">Refresh</button>
+            <button id="pairBtn" class="primary">Pair New Device</button>
+          </div>
+        </header>
+
+        <section id="homeView" class="view active">
+          <div class="section-head">
+            <h2>Nearby Devices</h2>
+            <button id="manualConnectBtn" class="secondary">Manual Connect</button>
+          </div>
+          <div id="nearbyDevices" class="device-list"></div>
+
+          <div class="section-head paired-head">
+            <h2>Paired Devices</h2>
+          </div>
+          <div id="pairedDevices" class="device-list"></div>
+        </section>
+
+        <section id="browserView" class="view browser-layout">
+          <div class="browser-main">
+            <div class="browser-toolbar">
+              <button id="backBtn" class="secondary">Back</button>
+              <div id="breadcrumbs" class="breadcrumbs"></div>
+              <input id="searchInput" class="search" placeholder="Filter files" autocomplete="off">
+              <button id="viewToggleBtn" class="secondary">Grid</button>
+            </div>
+            <div id="fileList" class="file-list list"></div>
+          </div>
+          <aside class="preview-pane">
+            <div id="previewEmpty" class="preview-empty">Select a file to preview or transfer.</div>
+            <div id="previewContent"></div>
+          </aside>
+        </section>
+
+        <section id="transfersView" class="view">
+          <div class="transfer-panel">
+            <h2>Transfers</h2>
+            <div id="transferList" class="transfer-list">
+              <p class="muted">Transfers will appear here while uploads, downloads, and copies are running.</p>
+            </div>
+          </div>
+        </section>
+
+        <section id="settingsView" class="view settings-grid">
+          <div class="settings-block">
+            <h2>Shared Folders</h2>
+            <p id="sharedRoots" class="muted"></p>
+            <label class="upload-drop">
+              <span>Upload files to the current shared folder</span>
+              <input id="uploadInput" type="file" multiple>
+            </label>
+          </div>
+          <div class="settings-block">
+            <h2>Security</h2>
+            <p class="muted">Kaiho Files exposes only configured shared roots. Pairing establishes trust using public keys; private keys never appear in QR codes.</p>
+            <button id="newPairFromSettings" class="primary">Pair New Device</button>
+          </div>
+        </section>
+      </section>
+    </main>
+
+    <dialog id="pairDialog" class="pair-dialog">
+      <form method="dialog">
+        <div class="dialog-head">
+          <h2>Pair New Device</h2>
+          <button class="icon-only" value="cancel" title="Close">x</button>
+        </div>
+        <div id="qrBox" class="qr-box"></div>
+        <p class="muted">Scan this code with Kaiho Files on your phone.</p>
+        <textarea id="qrPayloadText" readonly></textarea>
+      </form>
+    </dialog>
+
+    <dialog id="manualDialog" class="manual-dialog">
+      <form method="dialog">
+        <div class="dialog-head">
+          <h2>Manual Connect</h2>
+          <button class="icon-only" value="cancel" title="Close">x</button>
+        </div>
+        <label class="field">
+          <span>Device URL</span>
+          <input id="manualUrl" placeholder="http://192.168.1.34:38471">
+        </label>
+        <button id="connectManualBtn" class="primary" value="default">Connect</button>
+      </form>
+    </dialog>
+
+    <script src="/app.js"></script>
+  </body>
+</html>
+
